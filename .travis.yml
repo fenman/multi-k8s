@@ -11,14 +11,14 @@ script:
   - docker run -e CI=true fenman/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t fenman/multi-client ./client
-  - docker build -t fenman/multi-nginx ./nginx
-  - docker build -t fenman/multi-server ./server
-  - docker build -t fenman/multi-worker ./worker
+  - docker build -t dickfennema/multi-client ./client
+  - docker build -t dickfennema/multi-nginx ./nginx
+  - docker build -t dickfennema/multi-server ./server
+  - docker build -t dickfennema/multi-worker ./worker
   # login to docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --pasword-stdin
   # take those images and push to docker-hub
-  - docker push fenman/multi-client
-  - docker push fenman/multi-nginx
-  - docker push fenman/multi-server
-  - docker push fenman/multi-worker      
+  - docker push dickfennema/multi-client
+  - docker push dickfennema/multi-nginx
+  - docker push dickfennema/multi-server
+  - docker push dickfennema/multi-worker      
