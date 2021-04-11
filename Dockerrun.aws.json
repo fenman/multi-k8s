@@ -1,0 +1,35 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "conatinerDefinitions": [
+        { 
+            "name": "client",
+            "image": "dickfennema/multi-client",
+            "hostname": "client",
+            "essential": false
+        },
+        { 
+            "name": "server",
+            "image": "dickfennema/multi-sever",
+            "hostname": "api",
+            "essential": false
+        },
+        { 
+            "name": "worker",
+            "image": "dickfennema/multi-worker",
+            "hostname": "worker",
+            "essential": false
+        },
+        { 
+            "name": "nginx",
+            "image": "dickfennema/multi-nginx",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                }
+            ],
+            "links": ["client", "server"]
+        }
+    ]
+}
